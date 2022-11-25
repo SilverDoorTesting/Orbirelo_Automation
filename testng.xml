@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<listeners>
+		<listener
+			class-name="SilverDoor.Orbirelo.qa.util.ExtentReportListener" />
+	</listeners>
+	<test thread-count="5" name="Test">
+		<classes>
+<!-- 			<class name="SilverDoor.Orbirelo.testcases.LoginPageTest" /> -->
+<!-- 			<class name="SilverDoor.Orbirelo.testcases.MyProfilePageTest" /> -->
+<!-- 			<class name="SilverDoor.Orbirelo.testcases.EnquiryPageTest" />	 -->
+<!-- 			<class name="SilverDoor.Orbirelo.testcases.EnquiryAndQuotesPageTest" /> -->
+			<class name="SilverDoor.Orbirelo.testcases.ReservationsPageTest" />
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->
