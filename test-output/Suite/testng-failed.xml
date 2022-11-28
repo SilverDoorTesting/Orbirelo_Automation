@@ -1,34 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
-  <listeners>
-    <listener class-name="SilverDoor.Orbirelo.qa.util.ExtentReportListener"/>
-  </listeners>
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="SilverDoor.Orbirelo.testcases.EnquiryAndQuotesPageTest">
+      <class name="SilverDoor.Orbirelo.testcases.ServiceRequestPageTest">
         <methods>
-          <include name="setUp"/>
-          <include name="validateSubmittedQuotes"/>
-          <include name="submitNewEnquiryFromDashboard"/>
+          <include name="validateBackToServiceRequests" invocation-numbers="0"/>
+          <include name="getServiceRequestPage" invocation-numbers="0"/>
+          <include name="submitServiceRequestUsingEnquiryID" invocation-numbers="0"/>
           <include name="tearDown"/>
-        </methods>
-      </class> <!-- SilverDoor.Orbirelo.testcases.EnquiryAndQuotesPageTest -->
-      <class name="SilverDoor.Orbirelo.testcases.ReservationsPageTest">
-        <methods>
-          <include name="getDetailsWithCheckOutDate_dashboard"/>
-          <include name="getDetailsWithReservationNumber_sideMenu"/>
-          <include name="getDetailsWithLeadGuestName_dashboard"/>
-          <include name="validateReservationsPageTitle_dashboard"/>
-          <include name="getDetailsWithLocation_dashboard"/>
-          <include name="getDetailsWithCheckInDate_dashboard"/>
-          <include name="getDetailsWithReservationNumber_dashboard"/>
-          <include name="getDetailsWithDates_dashboard"/>
-          <include name="getDetailsWithReservationMadeByName_dashboard"/>
+          <include name="submitServiceRequestUsingReservationID" invocation-numbers="0"/>
           <include name="setUp"/>
-          <include name="tearDown"/>
         </methods>
-      </class> <!-- SilverDoor.Orbirelo.testcases.ReservationsPageTest -->
+      </class> <!-- SilverDoor.Orbirelo.testcases.ServiceRequestPageTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

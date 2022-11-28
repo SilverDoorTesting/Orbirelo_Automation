@@ -5,13 +5,12 @@ import java.util.List;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
 
-import SilverDoor.Orbirelo.qa.base.TestBase;
 import SilverDoor.Orbirelo.qa.pageobjects.enquiriesAndQuotes.EnquiryPage;
 import SilverDoor.Orbirelo.qa.pageobjects.enquiriesAndQuotes.ProposalsPage;
+import SilverDoor.Orbirelo.qa.util.CustomizedDriverMethods;
 
-public class RebookApartmentPage extends TestBase {
+public class RebookApartmentPage extends CustomizedDriverMethods {
 
 	@FindBy(xpath = "//h2[@itemprop='name']")
 	WebElement propertyName;
@@ -43,7 +42,7 @@ public class RebookApartmentPage extends TestBase {
 	@FindBy(xpath = "//input[@type = 'submit']")
 	WebElement updateResults;
 	
-	@FindBy(xpath = "//input[@type= 'radio']")
+	@FindBy(xpath = "//input[@type= 'radio']/parent::div/following-sibling::div/div")
 	List<WebElement> planOptions;
 	
 	@FindBy(id = "js-orbi-select-22383")
@@ -51,6 +50,10 @@ public class RebookApartmentPage extends TestBase {
 	
 	@FindBy(xpath = "//button[@type = 'submit']")
 	WebElement instantBookBtn;
+	
+	@FindBy(xpath = "//div[contains(@class, 'uk-notification-message')]/div")
+	WebElement notificationMsg;
+
 
 	public RebookApartmentPage() {
 		PageFactory.initElements(driver, this);
@@ -81,54 +84,35 @@ public class RebookApartmentPage extends TestBase {
 
 	public void inputCheckInDate(String date) {
 		checkInDate.click();
-		selectDate(date);
+		selectDate(dateValues,nextMonthButton,date);
 	}
 
 	public void inputCheckOutDate(String date) {
 		checkOutDate.click();
 		checkOutDate.click();
-		selectDate(date);
+		selectDate(dateValues,nextMonthButton,date);
 	}
 
 	public void selectGuestCount(String count) {
-		Select guests = new Select(noOfGuests);
-		guests.selectByVisibleText(count);	
+		selectComboByValue(noOfGuests,count);
 	}
 	
 	public void clickUpdateResultsBtn() {
 		updateResults.click();
 	}
 	
-	public void clickAddToProposalBtn() {
+	public void selectPlan(String option) {
+		selectDropdown(planOptions,option);
+	}
+	
+	public String clickAddToProposalBtn() {
 		addToProposalBtn.click();
+		return notificationMsg.getText();
 	}
 	
 	public ReservationFormPage clickInstantBookBtn() {
 		instantBookBtn.click();
 		return new ReservationFormPage();
-	}
-
-	public void sendInput(WebElement element, String value) {
-		element.clear();
-		element.sendKeys(value);
-	}
-		
-	public void selectDate(String date) {
-		if(dateValues.get(dateIndex(date)).getAttribute("class").contains("disabled")){
-			nextMonthButton.click();
-		}	
-		dateValues.get(dateIndex(date)).click();
-	}
-
-	public int dateIndex(String date) {
-		int value = 0;
-		for(int index =0; index <dateValues.size();index++) {
-			if(dateValues.get(index).getText().equals(date)) {
-				value = index;
-				break;
-			}
-		}
-		return value;
 	}
 
 }

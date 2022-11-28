@@ -6,10 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import SilverDoor.Orbirelo.qa.base.TestBase;
 import SilverDoor.Orbirelo.qa.pageobjects.ServiceRequestPage;
+import SilverDoor.Orbirelo.qa.util.CustomizedDriverMethods;
 
-public class MyEnquiryAndQuotesPage extends TestBase{
+public class MyEnquiryAndQuotesPage extends CustomizedDriverMethods {
 
 	@FindBy(xpath = "//dt[text()='Destination']//following::dd")
 	WebElement destination;
@@ -75,12 +75,7 @@ public class MyEnquiryAndQuotesPage extends TestBase{
 	}
 
 	public ServiceRequestPage clickRaiseServiceRequestBtn(String enquiryID) {
-		for(int index =0; index<enquiryIDList.size(); index++) {
-			if((enquiryIDList.get(index).getText()).equals(enquiryID)){
-				serviceRequestBtnList.get(index).click();
-				break;
-			}
-		}
+		ClickBtnWithIndex(enquiryIDList,serviceRequestBtnList,enquiryID);
 		return new ServiceRequestPage();
 	}
 }

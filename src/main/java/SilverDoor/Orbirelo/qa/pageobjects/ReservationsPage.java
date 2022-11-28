@@ -4,15 +4,13 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import SilverDoor.Orbirelo.qa.base.TestBase;
+import SilverDoor.Orbirelo.qa.util.CustomizedDriverMethods;
 
-public class ReservationsPage extends TestBase {
-
+public class ReservationsPage extends CustomizedDriverMethods {
 
 	String CURRENT_DIR = System.getProperty("user.dir");
 	
@@ -106,6 +104,18 @@ public class ReservationsPage extends TestBase {
 	@FindBy(xpath = "//a[contains(text(),'Raise Service Request')]")
 	WebElement raiseServiceRequestBtn;
 	
+	@FindBy(xpath = "//button[contains(@data-uk-toggle , 'orbi-cancel')]")
+	WebElement reservationCancelBtn;
+	
+	@FindBy(xpath = "//div[@class = 'uk-grid uk-grid-small']/div[1]/a")
+	WebElement reservationCancelYesBtn;
+	
+	@FindBy(xpath = "//div[@class = 'uk-grid uk-grid-small']/div[2]/button")
+	WebElement reservationCancelNoBtn;
+	
+	@FindBy(xpath = "//div[@class = 'uk-container']/ul/li")
+	WebElement cancelSuccessMsg;
+	
 	public ReservationsPage() {
 		PageFactory.initElements(driver, this);
 	}
@@ -115,33 +125,27 @@ public class ReservationsPage extends TestBase {
 	}
 
 	public void inputReservationNumber(String number) {
-		sendInput(reservationNumber,number);
+		inputTextFields(reservationNumber,number);
 	}
 
 	public void inputGuestName(String name) {
-		sendInput(guestName,name);
+		inputTextFields(guestName,name);
 	}
 
-	public void inputCheckInDate(String date) {		
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		jse.executeScript("document.getElementsByName('checkIn')[0].removeAttribute('readonly');");
-		checkInDate.clear();
-		checkInDate.sendKeys(date);
+	public void inputCheckInDate(String date) {	
+		inputCheckInDate(checkInDate,date);
 	}
 
 	public void inputCheckOutDate(String date) {
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
-		jse.executeScript("document.getElementsByName('checkOut')[0].removeAttribute('readonly');");
-		checkOutDate.clear();
-		checkOutDate.sendKeys(date);
+		inputCheckOutDate(checkOutDate,date);
 	}
 
 	public void inputLocation(String place) {
-		sendInput(location,place);
+		inputTextFields(location,place);
 	}
 
 	public void inputReservationMadeBy(String place) {
-		sendInput(reservationMadeBy,place);
+		inputTextFields(reservationMadeBy,place);
 	}
 
 	public void clickSearchBtn() {
@@ -161,8 +165,7 @@ public class ReservationsPage extends TestBase {
 	}
 	
 	public String getApartmentType() {
-		String aptType = apartmentType.getText();
-		return aptType.substring(4,aptType.length());
+		return getSubString(apartmentType,4);
 	}
 	
 	public String getCheckInDate() {
@@ -174,8 +177,7 @@ public class ReservationsPage extends TestBase {
 	}
 
 	public String getReservationNumber() {
-		String reservationNumber = tableReservationNumber.getText();
-		return reservationNumber.substring(23,reservationNumber.length());
+		return getSubString(tableReservationNumber,23);
 	}
 
 	public List<String> getLeadGuestNameList() {
@@ -212,12 +214,7 @@ public class ReservationsPage extends TestBase {
 	
 	public void clickDownloadConfirmationBtn() {
 		downloadConfirmationBtn.click();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		sleepAndWait(1000);
 	}
 	
 	public boolean fileDownloaded(String resNumber) {
@@ -230,10 +227,21 @@ public class ReservationsPage extends TestBase {
 		raiseServiceRequestBtn.click();
 		return new ServiceRequestPage();
 	}
-
-	public void sendInput(WebElement element, String value) {
-		element.clear();
-		element.sendKeys(value);
+	
+	public void clickReservationCancelBtn() {
+		reservationCancelBtn.click();
+	}
+	
+	public void clickReservationCancelYesBtn() {
+		reservationCancelYesBtn.click();
+	}
+	
+	public void clickReservationCancelNoBtn() {
+		reservationCancelNoBtn.click();
+	}
+	
+	public String getCancelSuccessMsg() {
+		return cancelSuccessMsg.getText();
 	}
 
 	public List<String> getReservationDataList(List<WebElement> tableNameList) {

@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="SilverDoor.Orbirelo.testcases.ReservationsPageTest">
+      <class name="SilverDoor.Orbirelo.testcases.ProposalsPageTest">
         <methods>
-          <include name="getRebookApartmentPage"/>
+          <include name="searchProposalsByCheckInDate"/>
           <include name="setUp"/>
-          <include name="tearDown"/>
+          <include name="afterMethod"/>
         </methods>
-      </class> <!-- SilverDoor.Orbirelo.testcases.ReservationsPageTest -->
+      </class> <!-- SilverDoor.Orbirelo.testcases.ProposalsPageTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

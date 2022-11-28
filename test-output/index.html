@@ -26,7 +26,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite</span>
+      <span class="top-banner-font-1">1 suite, 1 failed test</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -40,7 +40,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-Default_suite" class="navigator-link">
-              <span class="suite-name border-passed">Default suite</span>
+              <span class="suite-name border-failed">Default suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -51,7 +51,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\silverdoo\AppData\Local\Temp\testng-eclipse-306066806\testng-customsuite.xml</span>
+                    <span>C:\Users\silverdoo\AppData\Local\Temp\testng-eclipse-1771800788\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -93,21 +93,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method,   1 passed</span>
+                    <span class="method-stats">1 method, 1 failed,   </span>
                   </li>
                   <li>
-                    <span class="method-list-title passed">Passed methods</span>
-                    <span class="show-or-hide-methods passed">
-                      <a href="#" panel-name="suite-Default_suite" class="hide-methods passed suite-Default_suite"> (hide)</a> <!-- hide-methods passed suite-Default_suite -->
-                      <a href="#" panel-name="suite-Default_suite" class="show-methods passed suite-Default_suite"> (show)</a> <!-- show-methods passed suite-Default_suite -->
+                    <span class="method-list-title failed">Failed methods</span>
+                    <span class="show-or-hide-methods failed">
+                      <a href="#" panel-name="suite-Default_suite" class="hide-methods failed suite-Default_suite"> (hide)</a> <!-- hide-methods failed suite-Default_suite -->
+                      <a href="#" panel-name="suite-Default_suite" class="show-methods failed suite-Default_suite"> (show)</a> <!-- show-methods failed suite-Default_suite -->
                     </span>
-                    <div class="method-list-content passed suite-Default_suite">
+                    <div class="method-list-content failed suite-Default_suite">
                       <span>
-                        <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="SilverDoor.Orbirelo.testcases.ReservationsPageTest" class="method navigator-link" hash-for-method="getRebookApartmentPage">getRebookApartmentPage</a> <!-- method navigator-link -->
+                        <img src="failed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="SilverDoor.Orbirelo.testcases.ProposalsPageTest" class="method navigator-link" hash-for-method="searchProposalsByCheckInDate">searchProposalsByCheckInDate</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content passed suite-Default_suite -->
+                    </div> <!-- method-list-content failed suite-Default_suite -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -119,25 +119,61 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Default_suite" class="panel Default_suite">
-          <div class="suite-Default_suite-class-passed">
+          <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">SilverDoor.Orbirelo.testcases.ReservationsPageTest</span>
+              <img src="failed.png"/>
+              <span class="class-name">SilverDoor.Orbirelo.testcases.ProposalsPageTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="getRebookApartmentPage">
-                  </a> <!-- getRebookApartmentPage -->
-                  <span class="method-name">getRebookApartmentPage</span>
+                  <a name="searchProposalsByCheckInDate">
+                  </a> <!-- searchProposalsByCheckInDate -->
+                  <span class="method-name">searchProposalsByCheckInDate</span>
+                  <div class="stack-trace">java.lang.AssertionError: expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:99)
+	at org.testng.Assert.failNotEquals(Assert.java:1037)
+	at org.testng.Assert.assertTrue(Assert.java:45)
+	at org.testng.Assert.assertTrue(Assert.java:55)
+	at SilverDoor.Orbirelo.testcases.ProposalsPageTest.searchProposalsByCheckInDate(ProposalsPageTest.java:96)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.testng.TestRunner.privateRun(TestRunner.java:794)
+	at org.testng.TestRunner.run(TestRunner.java:596)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+	at org.testng.TestNG.runSuites(TestNG.java:1063)
+	at org.testng.TestNG.run(TestNG.java:1031)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+
+</div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Default_suite-class-passed -->
+          </div> <!-- suite-Default_suite-class-failed -->
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\silverdoo\AppData\Local\Temp\testng-eclipse-306066806\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\silverdoo\AppData\Local\Temp\testng-eclipse-1771800788\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -146,11 +182,11 @@
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;SilverDoor.Orbirelo.testcases.ReservationsPageTest&quot;&gt;
+      &lt;class name=&quot;SilverDoor.Orbirelo.testcases.ProposalsPageTest&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;getRebookApartmentPage&quot;/&gt;
+          &lt;include name=&quot;searchProposalsByCheckInDate&quot;/&gt;
         &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- SilverDoor.Orbirelo.testcases.ReservationsPageTest --&gt;
+      &lt;/class&gt; &lt;!-- SilverDoor.Orbirelo.testcases.ProposalsPageTest --&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -192,14 +228,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'getRebookApartmentPage')
-data.setCell(0, 2, 'SilverDoor.Orbirelo.testcases.ReservationsPageTest')
-data.setCell(0, 3, 12437);
+data.setCell(0, 1, 'searchProposalsByCheckInDate')
+data.setCell(0, 2, 'SilverDoor.Orbirelo.testcases.ProposalsPageTest')
+data.setCell(0, 3, 153590);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 12 seconds</span>
+              <span class="suite-total-time">Total running time: 2 minutes</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -214,49 +250,23 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">19 ignored methods</span>
+            <span class="header-content">6 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
-              <span class="ignored-class-name">SilverDoor.Orbirelo.testcases.ReservationsPageTest</span>
+              <span class="ignored-class-name">SilverDoor.Orbirelo.testcases.ProposalsPageTest</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">getDetailsWithReservationNumber_sideMenu</span>
+                <span class="ignored-method-name">ValidatePageTitle</span>
                 <br/>
-                <span class="ignored-method-name">validateReservationsPageTitle_dashboard</span>
+                <span class="ignored-method-name">searchProposalsByLeadGuestName</span>
                 <br/>
-                <span class="ignored-method-name">getDetailsWithCheckInDate_sideMenu</span>
+                <span class="ignored-method-name">searchProposalsByCheckOutDate</span>
                 <br/>
-                <span class="ignored-method-name">validateReservationsPageTitle_sideMenu</span>
+                <span class="ignored-method-name">enquireProposalProperty</span>
                 <br/>
-                <span class="ignored-method-name">getDetailsWithLocation_dashboard</span>
+                <span class="ignored-method-name">searchProposalsByDates</span>
                 <br/>
-                <span class="ignored-method-name">getDetailsWithReservationNumber_dashboard</span>
-                <br/>
-                <span class="ignored-method-name">getDetailsWithCheckInDate_dashboard</span>
-                <br/>
-                <span class="ignored-method-name">viewReservationData</span>
-                <br/>
-                <span class="ignored-method-name">getDetailsWithReservationMadeByName_dashboard</span>
-                <br/>
-                <span class="ignored-method-name">downloadConfirmation</span>
-                <br/>
-                <span class="ignored-method-name">getDetailsWithDates_sideMenu</span>
-                <br/>
-                <span class="ignored-method-name">getDetailsWithCheckOutDate_dashboard</span>
-                <br/>
-                <span class="ignored-method-name">getDetailsWithLeadGuestName_dashboard</span>
-                <br/>
-                <span class="ignored-method-name">getServiceRequestPage</span>
-                <br/>
-                <span class="ignored-method-name">getDetailsWithLocation_sideMenu</span>
-                <br/>
-                <span class="ignored-method-name">getDetailsWithReservationMadeByName_sideMenu</span>
-                <br/>
-                <span class="ignored-method-name">getDetailsWithDates_dashboard</span>
-                <br/>
-                <span class="ignored-method-name">getDetailsWithLeadGuestName_sideMenu</span>
-                <br/>
-                <span class="ignored-method-name">getDetailsWithCheckOutDate_sideMenu</span>
+                <span class="ignored-method-name">clickViewBtn</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -268,18 +278,20 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">SilverDoor.Orbirelo.testcases.ReservationsPageTest</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">SilverDoor.Orbirelo.testcases.ProposalsPageTest</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">setUp</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">getRebookApartmentPage</span>
-                <span class="method-start">4724 ms</span>
+                <img src="failed.png">
+                </img>
+                <span class="method-name">searchProposalsByCheckInDate</span>
+                <span class="method-start">6923 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
-                <span class="method-name">tearDown</span>
-                <span class="method-start">17166 ms</span>
+                <span class="method-name">afterMethod</span>
+                <span class="method-start">160525 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

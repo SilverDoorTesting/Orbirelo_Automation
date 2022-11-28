@@ -7,12 +7,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import SilverDoor.Orbirelo.qa.base.TestBase;
+import SilverDoor.Orbirelo.qa.util.CustomizedDriverMethods;
 
-public class MyProfilePage extends TestBase{
+public class MyProfilePage extends CustomizedDriverMethods{
 	
 	@FindBy(name="avatar")
 	WebElement uploadImage;
@@ -101,20 +100,19 @@ public class MyProfilePage extends TestBase{
 	}
 	
 	public void selectUserTitle(String title) {
-		Select usrTitle = new Select(userTitle);
-		usrTitle.selectByValue(title);
+		selectComboByValue(userTitle,title);
 	}
 	
 	public void inputFirstName(String name) {
-		sendInput(firstname,name);
+		inputTextFields(firstname,name);
 	}
 	
 	public void inputLastName(String name) {
-		sendInput(lastName,name);
+		inputTextFields(lastName,name);
 	}
 	
 	public void inputJobTitle(String designation) {
-		sendInput(jobTitle,designation);
+		inputTextFields(jobTitle,designation);
 	}  
 	
 	public void selectAddressSearch() {
@@ -122,89 +120,67 @@ public class MyProfilePage extends TestBase{
 	}	
 	
 	public void inputAddress(String place) {
-		sendInput(address,place);
+		inputTextFields(address,place);
 	}
 	
 	public void inputCity(String userCity) {
-		sendInput(city,userCity);
+		inputTextFields(city,userCity);
 	}
 	
 	public void selectCountry(String userCountry) {
-		Select countryDropdown = new Select(country);
-		countryDropdown.selectByValue(userCountry);
+		selectComboByValue(country,userCountry);
 	}
 	
 	public void inputPostCode(String postal) {
-		sendInput(postCode,postal);
+		inputTextFields(postCode,postal);
 	}
 	
 	public void addressSearch(String pincode) {
 		addressSearchBtn.click();
-		sendInput(postalCodeSearch,pincode);
-		
+		inputTextFields(postalCodeSearch,pincode);		
 		WebDriverWait wait = new WebDriverWait(driver,20);
 		wait.until(ExpectedConditions.elementToBeClickable(addressList));
 		addressList.click();
-		try {
-			Thread.sleep(6000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		sleepAndWait(6000);
 		driver.findElement(By.xpath("//ul[@class= 'c2a_results']/li/div/span[2]")).click();
-		try {
-			Thread.sleep(6000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		sleepAndWait(6000);
+		
 	}
 	
 	public void inputEmailId(String email) {
-		sendInput(emailId,email);
+		inputTextFields(emailId,email);
 	}
 	
 	public void inputcallingcode(String code) {
-		sendInput(countryCallingCode,code);
+		inputTextFields(countryCallingCode,code);
 	}
 	
 	public void inputPhoneNumber(String number) {
-		sendInput(phoneNumber,number);
+		inputTextFields(phoneNumber,number);
 	}
 	
 	public void inputNotificationEmail(String mail) {
-		sendInput(notificationEmail,mail);
+		inputTextFields(notificationEmail,mail);
 	}
 	
 	public void inputOffice(String officelocation) {
-		sendInput(office,officelocation);
+		inputTextFields(office,officelocation);
 	}
 	
 	public void selectDepartment(String name) {
-		Select departmentDropdown = new Select(department);
-		departmentDropdown.selectByVisibleText(name);
+		selectComboByVisibleText(department,name);
 	}
 
 	public void selectSecurityRadioButton(String radioValue) {
-		for( int index =0; index<securityRadioOptions.size();index++) {
-			WebElement radioBtn = securityRadioOptions.get(index);
-			if((radioBtn.getAttribute("value")).equalsIgnoreCase(radioValue)) {
-				radioBtn.click();
-				break;
-			}
-		}
+		selectRadioButton(securityRadioOptions,radioValue);
 	}
 
 	public void selectMarketingCheckBox() {
-		if(!marketingCheckbox.isSelected()) {
-			marketingCheckbox.click();
-		}
+		selectCheckBox(marketingCheckbox);
 	}
 
 	public void unSelectMarketingCheckBox() {
-		if(marketingCheckbox.isSelected()) {
-			marketingCheckbox.click();
-		}
+		unSelectCheckBox(marketingCheckbox);
 	}
 
 	public void clickSaveProfileBtn() {
@@ -220,19 +196,14 @@ public class MyProfilePage extends TestBase{
 	}
 	
 	public void inputOldPassword() {
-		sendInput(oldPassword,prop.getProperty("password"));
+		inputTextFields(oldPassword,prop.getProperty("password"));
 	}
 	
 	public void inputNewPassword(String pwd) {
-		sendInput(newPassword, pwd);
+		inputTextFields(newPassword, pwd);
 	}
 	
 	public void inputConfirmPassword(String pwd) {
-		sendInput(confirmNewPassword, pwd);
-	}
-	
-	public void sendInput(WebElement element, String value) {
-		element.clear();
-		element.sendKeys(value);
+		inputTextFields(confirmNewPassword, pwd);
 	}
 }

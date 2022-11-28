@@ -17,6 +17,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 public class TestBase {
 	public static WebDriver driver;
 	public static Properties prop;
@@ -45,7 +47,8 @@ public class TestBase {
 					System.getProperty("user.dir") + File.separator + "file_downloads");
 			ChromeOptions options = new ChromeOptions();
 			options.setExperimentalOption("prefs", prefs);
-			System.setProperty("webdriver.chrome.driver","C:\\Users\\silverdoo\\eclipse-workspace\\drivers\\chrome\\chromedriver.exe");
+			//System.setProperty("webdriver.chrome.driver","C:\\Users\\silverdoo\\eclipse-workspace\\drivers\\chrome\\chromedriver.exe");
+			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver(options);
 		} else {
 			System.out.println("Browser not found");
@@ -70,4 +73,8 @@ public class TestBase {
 		driver.manage().timeouts().pageLoadTimeout(20,TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
+
+
+
 }
+

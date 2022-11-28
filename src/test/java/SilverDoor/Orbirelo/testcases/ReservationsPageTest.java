@@ -99,8 +99,8 @@ public class ReservationsPageTest extends TestBase{
 		dashboardPage = loginPage.getDashboardPage();
 		dashboardPage.clickSideMenu();
 		reservationsPage = dashboardPage.clickReservations();
-		String checkInDate = "01/06/2022";
-		String checkOutDate = "08/06/2022";
+		String checkInDate = "01/10/2022";
+		String checkOutDate = "08/10/2022";
 		reservationsPage.inputCheckInDate(checkInDate);
 		reservationsPage.inputCheckOutDate(checkOutDate);
 		reservationsPage.clickSearchBtn();
@@ -445,13 +445,29 @@ public class ReservationsPageTest extends TestBase{
 	@Test(priority = 19)
 	public void getServiceRequestPage() {
 		reservationsPage = loginPage.getDashboardPage().viewReservations();
-		String resNumber = "RES-220004411";
+		String resNumber = "RES-220004749";
 		reservationsPage.inputReservationNumber(resNumber);
 		reservationsPage.clickSearchBtn();
 		serviceRequestPage = reservationsPage.clickRaiseServiceRequestBtn();
 		String pageTitle = serviceRequestPage.getServiceRequestPageTitle();
 		try {
 			Assert.assertEquals(pageTitle, "Service Request | Orbi");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test(priority = 20)
+	public void cancelReservation() {
+		reservationsPage = loginPage.getDashboardPage().viewReservations();
+		String resNumber = "RES-220004748";
+		reservationsPage.inputReservationNumber(resNumber);
+		reservationsPage.clickSearchBtn();
+		reservationsPage.clickReservationCancelBtn();
+		reservationsPage.clickReservationCancelYesBtn();
+		String successMsg = reservationsPage.getCancelSuccessMsg();
+		try {
+			Assert.assertEquals(successMsg, "Reservation successfully cancelled");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

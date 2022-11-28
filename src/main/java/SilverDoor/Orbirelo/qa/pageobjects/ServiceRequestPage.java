@@ -5,11 +5,10 @@ import java.util.List;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
 
-import SilverDoor.Orbirelo.qa.base.TestBase;
+import SilverDoor.Orbirelo.qa.util.CustomizedDriverMethods;
 
-public class ServiceRequestPage extends TestBase {
+public class ServiceRequestPage extends CustomizedDriverMethods {
 	
 	@FindBy(xpath = "//a[@href = '/app/service-request']")
 	WebElement backToServiceRequestBtn;
@@ -47,45 +46,33 @@ public class ServiceRequestPage extends TestBase {
 	}
 	
 	public void inputSubject(String test) {
-		sendInput(subject,test);
+		inputTextFields(subject,test);
 		
 	}
 		
 	public void inputDescription(String describe) {
-		sendInput(description,describe);
+		inputTextFields(description,describe);
 
 	}
 	
 	public void selectRequestClassification(String classification) {
-		Select reasonclassification = new Select(requestClassification);
-		reasonclassification.selectByValue(classification);
+		selectComboByValue(requestClassification,classification);
 	}
 	
 	public void selectServiceRequestReason(String reason) {
-		for(int index = 0 ; index < serviceRequestReason.size();index++) {
-			if(serviceRequestReason.get(index).getText().equals(reason)) {
-				serviceRequestReason.get(index).click();
-				break;
-			} 
-		}
+		selectDropdownWithMatchedValue(serviceRequestReason, reason);
 	}
 	
 	public void selectPriority(String status) {
-		Select requestPriority = new Select(priority);
-		requestPriority.selectByValue(status);
+		selectComboByValue(priority,status);
 	}
 	
-	public void selectServiceRequestType(String type) {		
-		for(int index = 0 ; index < serviceRequestType.size();index++) {
-			if(serviceRequestType.get(index).getText().equals(type)) {
-				serviceRequestType.get(index).click();
-				break;
-			} 
-		}
+	public void selectServiceRequestType(String type) {	
+		selectDropdownWithMatchedValue(serviceRequestType,type);
 	}
 	
 	public void inputReservationId(String number) {
-		sendInput(reservationId,number);	
+		inputTextFields(reservationId,number);	
 	}
 	
 	public IssueResolutionCentrePage clickSendRequestBtn() {
@@ -98,9 +85,4 @@ public class ServiceRequestPage extends TestBase {
 		return new IssueResolutionCentrePage();
 	}
 	
-	public void sendInput(WebElement element, String value) {
-		element.clear();
-		element.sendKeys(value);
-	}	
-
 }

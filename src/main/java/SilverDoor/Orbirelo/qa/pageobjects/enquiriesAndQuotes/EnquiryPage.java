@@ -2,15 +2,13 @@ package SilverDoor.Orbirelo.qa.pageobjects.enquiriesAndQuotes;
 
 import java.util.List;
 
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
 
-import SilverDoor.Orbirelo.qa.base.TestBase;
+import SilverDoor.Orbirelo.qa.util.CustomizedDriverMethods;
 
-public class EnquiryPage extends TestBase{
+public class EnquiryPage extends CustomizedDriverMethods{
 
 	@FindBy(name = "title")
 	WebElement userTitle;
@@ -84,117 +82,82 @@ public class EnquiryPage extends TestBase{
 	}
 
 	public void selectUserTitle(String value) {
-		Select title = new Select(userTitle);
-		title.selectByValue(value);
+		selectComboByValue(userTitle,value);
 	}
 
 	public void inputFirstName(String name) {
-		sendInput(firstName,name);
+		inputTextFields(firstName,name);
 	}
 
 	public void inputLastName(String name) {
-		sendInput(lastName,name);
+		inputTextFields(lastName,name);
 	}
 
 	public void inputEmailId(String email) {
-		sendInput(emailId,email);
+		inputTextFields(emailId,email);
 	}
 
 	public void inputMobileNumber(String phone) {
-		sendInput(mobileNumber,phone);
+		inputTextFields(mobileNumber,phone);
 	}
 
 	public void inputRmcReferenceNumber(String number) {
-		sendInput(rmcNumber,number);
+		inputTextFields(rmcNumber,number);
 	}
 
 	public void selectApartmentType(String type) {
-		Select apartment = new Select(apartmentType);
-		apartment.selectByVisibleText(type);
+		selectComboByVisibleText(apartmentType,type);
 	}
 
 	public void inputDestination(String place) {
-		sendInput( destination,place);
+		inputTextFields( destination,place);
 	}
 
 	public void selectNumberOfGuests(String guests) {
-		Select guest = new Select(numberOfGuests);
-		guest.selectByValue(guests);
+		selectComboByValue(numberOfGuests,guests);
 	}
 
 	public void inputGuestNames(String names) {
-		sendInput(guestNames,names);
+		inputTextFields(guestNames,names);
 	}
 
 	public void inputCheckInDate(String date) {
 		checkInDate.click();
-		selectDate(date);
+		selectDate(dateValues,nextMonthButton,date);
 	}
 
 	public void inputCheckOutDate(String date) {
 		checkOutDate.click();
 		checkOutDate.click();
-		selectDate(date);
+		selectDate(dateValues,nextMonthButton,date);
 	}
 
 	public void selectTotalApartments(String apartments) {
-		Select apartment = new Select(totalApartments);
-		apartment.selectByValue(apartments);
+		selectComboByValue(totalApartments,apartments);
 	}
 
 	public void inputBudget(String budget) {
-		sendInput(nightBudget,budget);
+		inputTextFields(nightBudget,budget);
 	}
 
 	public void selectBudgetCurrency(String currency) {
-		Select budget = new Select(budgetCurrency);
-		budget.selectByValue(currency);
+		selectComboByValue(budgetCurrency,currency);
 	}
 
 	public void selectFlexibleDateCheckBox() {
-		if(!flexibleDateCheckBox.isSelected()) {
-			flexibleDateCheckBox.click();
-		}
+		selectCheckBox(flexibleDateCheckBox);
 	}
 
 	public void unSelectFlexibleDateCheckBox() {
-		if(flexibleDateCheckBox.isSelected()) {
-			flexibleDateCheckBox.click();
-		}
+		unSelectCheckBox(flexibleDateCheckBox);
 	}
 
 	public void inputQuestions(String question)	{
-		sendInput(specialRequirements,question);
+		inputTextFields(specialRequirements,question);
 	}
 
 	public void clickSubmitButton() {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].scrollIntoView();",submitBtn);
-		submitBtn.click();
-	}
-
-	public void sendInput(WebElement element, String value) {
-		element.clear();
-		element.sendKeys(value);
-	}
-
-
-	public void selectDate(String date) {
-		if(dateValues.get(dateIndex(date)).getAttribute("class").contains("disabled")){
-			nextMonthButton.click();
-		}	
-		dateValues.get(dateIndex(date)).click();
-	}
-
-	public int dateIndex(String date) {
-		int value = 0;
-		for(int index =0; index <dateValues.size();index++) {
-			if(dateValues.get(index).getText().equals(date)) {
-				value = index;
-				break;
-			}
-		}
-		return value;
+		ScrollAndClickButton(submitBtn);
 	}
 
 	public String getThankYouMsg() {

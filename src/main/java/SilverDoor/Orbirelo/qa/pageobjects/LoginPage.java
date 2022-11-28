@@ -4,9 +4,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import SilverDoor.Orbirelo.qa.base.TestBase;
+import SilverDoor.Orbirelo.qa.util.CustomizedDriverMethods;
 
-public class LoginPage extends TestBase {
+public class LoginPage extends CustomizedDriverMethods {
 	
 	@FindBy(name = "email")
 	WebElement userName;
@@ -32,11 +32,11 @@ public class LoginPage extends TestBase {
 	}
 
 	public void inputUserName(String email) {
-		sendInput(userName,email);
+		inputTextFields(userName,email);
 	}
 
 	public void inputPassword(String userPwd) {
-		sendInput(password,userPwd);
+		inputTextFields(password,userPwd);
 	}
 
 	public void clickLoginBtn() {
@@ -64,11 +64,6 @@ public class LoginPage extends TestBase {
 	
 	public String getInvalidEmailValidationMsg() {
 		return invalidCredAlertMsg.getText();
-	}
-
-	public void sendInput(WebElement element, String value) {
-		element.clear();
-		element.sendKeys(value);
 	}
 
 }
